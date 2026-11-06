@@ -91,7 +91,7 @@ Bảng phân công vai trò rõ ràng để tránh xung đột lợi ích:
 ## 5. Quy tắc an toàn dữ liệu và Bảo mật (Data Security)
 
 - **Quy tắc 1: Tuyệt đối không tải dữ liệu lên công cụ công cộng:** Không bao giờ upload hình ảnh y tế, dữ liệu khách hàng hoặc hình ảnh camera an ninh nội bộ lên các trang web chuyển đổi định dạng trực tuyến tự do, các AI chatbot công cộng hoặc các server không được doanh nghiệp cấp phép an toàn.
-- **Quy tắc 2: Chặn rò rỉ API Key và Token:** Không được lưu trực tiếp các API.
+- **Quy tắc 2: Chặn rò rỉ API Key và Token:** Không được lưu trực tiếp API Key, Access Token, mật khẩu hoặc thông tin đăng nhập trong source code, notebook hay repository công khai trên GitHub. Thay vào đó, cần sử dụng Google Colab Secrets hoặc biến môi trường (Environment Variables) để lưu trữ và truy xuất thông tin bảo mật khi cần thiết.
 
 ## 6. Checklist trước khi nộp link repo
 
