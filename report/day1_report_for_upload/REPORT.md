@@ -1,20 +1,48 @@
 # Báo cáo bài thực hành Ngày 1 – Đọc prediction YOLO11 để hiểu định dạng nhãn
 
-Học viên điền đầy đủ các phần dưới đây dựa trên kết quả chạy mô hình thực tế trong notebook.
+**Ngày chạy:06-11-2026**
 
----
+**Runtime Colab:** GPU-T4
+
+**Python / PyTorch / Ultralytics:**
+
+**Checkpoint:** `yolo11n-cls.pt`, `yolo11n.pt`, `yolo11n-seg.pt`
+
+**Ngưỡng detection/segmentation dùng khi tạo JSON:** `0.35` (chỉ đổi nếu GV cho phép; nếu đổi hãy ghi rõ)
+
+**Thay đổi so với notebook nguồn:** Không / mô tả rõ thay đổi
+
+> **Cách dùng mẫu này:** copy/điền trên máy, lưu thành `REPORT.md`, rồi **upload** vào panel Files
+> của Colab (notebook không tự tạo file này). Ô cuối Colab sẽ đóng ZIP cùng `day1_lab_outputs/`.
+> Giải nén và đưa vào `report/` trên GitHub, rồi nộp **link repo** trên LMS.
+> Không ghi họ tên, MSSV, email, số điện thoại hoặc dữ liệu cá nhân khác vào báo cáo/output;
+> họ tên/MSSV chỉ nằm trong tên repository.
+
+### Từ cần nhớ (đọc nhanh trước khi viết)
+
+| Từ | Nghĩa ngắn |
+| --- | --- |
+| Prediction | Kết quả model vừa đoán ra; chưa phải nhãn đúng |
+| Ground truth | Nhãn do người gán theo quy tắc |
+| Taxonomy | Danh sách tên lớp có sẵn kèm model (vd. ImageNet-1K, COCO-80) |
+| Checkpoint | File model `.pt` đã huấn luyện sẵn |
+| Guideline | Quy tắc gán nhãn do người viết |
+| Annotator | Người gán nhãn |
+| Reviewer / QC | Người kiểm tra nhãn |
+| Escalation | Ca khó → hỏi Lab Coach, không tự bịa |
+| Model score | Số “tin” của model; không phải điểm chất lượng nhãn người |
 
 ## 1. Phân loại ảnh (Image Classification)
 
 - **Tên tệp ảnh đã phân tích:** `traffic.jpg` (COCO Image ID: 210273)
 - **Kết quả dự đoán có độ tin cậy cao nhất (Rank 1):**
   - Lớp dự đoán (`class_name`): `cab`
-  - Độ tin cậy (`score`): `0.510915` (hoặc tương đương ~51.1% tùy thuộc vào độ chính xác hiển thị thực tế)
+  - Độ tin cậy (`score`): `0.510915`
 - **Lớp dự đoán tiếp theo (Rank 2):**
   - Lớp dự đoán (`class_name`): `minibus`
   - Độ tin cậy (`score`): `0.164284`
 - **Đánh giá & suy luận về Taxonomy:**
-  - Mặc dù đây là một cảnh đường phố thực tế ở Vũ Hán (Wuhan) với rất nhiều xe buýt, xe con và phương tiện hỗn hợp giao thoa, mô hình ImageNet-1K gán nhãn hàng đầu là `cab` (taxi) và `minibus` do taxonomy của ImageNet-1K tập trung cao vào các đặc tính phương tiện chở khách thông dụng trên phố. 
+  - Mặc dù đây là một cảnh đường phố thực tế ở Vũ Hán (Wuhan) với rất nhiều xe buýt, xe con và phương tiện hỗn hợp giao thoa, mô hình ImageNet-1K gán nhãn hàng đầu là `cab` (taxi) và `minibus` do taxonomy của ImageNet-1K tập trung cao vào các đặc tính phương tiện chở khách thông dụng trên phố.
   - Điều này giải thích tại sao mô hình không gán nhãn chung chung là "traffic" hay "street" mà cố gắng tìm một lớp cụ thể nhất đại diện cho diện mạo xe cộ chiếm ưu thế.
 
 ---
@@ -63,7 +91,7 @@ Bảng phân công vai trò rõ ràng để tránh xung đột lợi ích:
 ## 5. Quy tắc an toàn dữ liệu và Bảo mật (Data Security)
 
 - **Quy tắc 1: Tuyệt đối không tải dữ liệu lên công cụ công cộng:** Không bao giờ upload hình ảnh y tế, dữ liệu khách hàng hoặc hình ảnh camera an ninh nội bộ lên các trang web chuyển đổi định dạng trực tuyến tự do, các AI chatbot công cộng hoặc các server không được doanh nghiệp cấp phép an toàn.
-- **Quy tắc 2: Chặn rò rỉ API Key và Token:** Không được lưu trực tiếp các API key bảo mật, mật khẩu hoặc tài khoản AWS/GCP trong mã nguồn của notebook hoặc đẩy công khai lên GitHub. Luôn sử dụng cơ chế bảo mật Secrets Manager của Colab (`userdata.get`) hoặc biến môi trường cục bộ để lưu trữ khóa bảo mật.
+- **Quy tắc 2: Chặn rò rỉ API Key và Token:** Không được lưu trực tiếp các API
 
 ## 6. Checklist trước khi nộp link repo
 
@@ -80,4 +108,3 @@ Kiểm tra trên GitHub trong thư mục `report/`:
 - [X] Ô validation cuối notebook báo `PASS`
 - [X] Không có họ tên, MSSV hoặc dữ liệu nhạy cảm trong báo cáo/output
 - [X] Đã nộp **link repository** trên LMS
-
