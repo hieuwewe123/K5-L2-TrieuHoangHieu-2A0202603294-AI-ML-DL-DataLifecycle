@@ -64,3 +64,20 @@ Bảng phân công vai trò rõ ràng để tránh xung đột lợi ích:
 
 - **Quy tắc 1: Tuyệt đối không tải dữ liệu lên công cụ công cộng:** Không bao giờ upload hình ảnh y tế, dữ liệu khách hàng hoặc hình ảnh camera an ninh nội bộ lên các trang web chuyển đổi định dạng trực tuyến tự do, các AI chatbot công cộng hoặc các server không được doanh nghiệp cấp phép an toàn.
 - **Quy tắc 2: Chặn rò rỉ API Key và Token:** Không được lưu trực tiếp các API key bảo mật, mật khẩu hoặc tài khoản AWS/GCP trong mã nguồn của notebook hoặc đẩy công khai lên GitHub. Luôn sử dụng cơ chế bảo mật Secrets Manager của Colab (`userdata.get`) hoặc biến môi trường cục bộ để lưu trữ khóa bảo mật.
+
+## 6. Checklist trước khi nộp link repo
+
+Kiểm tra trên GitHub trong thư mục `report/`:
+
+- [X] `REPORT.md` (file này đã điền)
+- [X] `day1_lab_outputs/classification_predictions.json`
+- [X] `day1_lab_outputs/detection_predictions.json`
+- [X] `day1_lab_outputs/segmentation_predictions.json`
+- [X] `day1_lab_outputs/IMAGE_ATTRIBUTION.md`
+- [X] `day1_lab_outputs/visuals/classification_top5.png`
+- [X] `day1_lab_outputs/visuals/detection_predictions.png`
+- [X] `day1_lab_outputs/visuals/segmentation_prediction.png`
+- [X] Ô validation cuối notebook báo `PASS`
+- [X] Không có họ tên, MSSV hoặc dữ liệu nhạy cảm trong báo cáo/output
+- [X] Đã nộp **link repository** trên LMS
+
